@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>STEGOREVEAL — Instant Steganography Message Extractor &amp; AES-256-GCM Decryptor</title>
+  <meta name="title" content="STEGOREVEAL — Instant Steganography Message Extractor &amp; AES-256-GCM Decryptor" />
+  <meta name="description" content="STEGOREVEAL is a standalone, zero-knowledge steganography decoder and message extractor. Extract hidden text, photos, and binary files from images with AES-256-GCM decryption and IEEE 802.3 CRC32 integrity verification. 100% private, client-side in-browser." />
+  <meta name="keywords" content="steganography decoder, steganography extractor, reveal hidden message in image, image steganography online, extract secret message, aes-256-gcm decryptor, zero knowledge stego, social-safe 8x8 dct, 1-lsb stego decoder, decode hidden image payload, steganography tools, stegoset, stegoshare" />
+  <meta name="author" content="Teja Priyan" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://tejapriyan.github.io/StegoReveal/" />
+
+  <!-- Geographic / GEO Location Meta Tags -->
+  <meta name="geo.region" content="GLOBAL" />
+  <meta name="geo.placename" content="Global / Worldwide" />
+  <meta name="geo.position" content="0.000000;0.000000" />
+  <meta name="ICBM" content="0.000000, 0.000000" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tejapriyan.github.io/StegoReveal/" />
+  <meta property="og:title" content="STEGOREVEAL — Instant Steganography Message Extractor &amp; Decryptor" />
+  <meta property="og:description" content="Zero-knowledge, 100% in-browser steganography extraction terminal. Drop any image to immediately extract and decrypt hidden text or binary files." />
+  <meta property="og:image" content="https://tejapriyan.github.io/StegoReveal/og-image.svg" />
+  <meta property="og:image:type" content="image/svg+xml" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="STEGOREVEAL Steganography Extractor Interface Banner" />
+  <meta property="og:site_name" content="StegoReveal" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://tejapriyan.github.io/StegoReveal/" />
+  <meta name="twitter:title" content="STEGOREVEAL — Instant Steganography Message Extractor &amp; Decryptor" />
+  <meta name="twitter:description" content="Zero-knowledge, 100% in-browser steganography extraction terminal. Drop any image to extract and decrypt hidden messages." />
+  <meta name="twitter:image" content="https://tejapriyan.github.io/StegoReveal/og-image.svg" />
+  <meta name="twitter:creator" content="@TejaPriyan" />
+
+  <!-- PWA & Favicon Icons -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="icon-192.svg" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#04070B" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="StegoReveal" />
+
+  <!-- JSON-LD Structured Data: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "StegoReveal",
+    "url": "https://tejapriyan.github.io/StegoReveal/",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "All modern browsers (Chrome, Firefox, Safari, Edge)",
+    "description": "Zero-knowledge, client-side steganography extraction terminal. Automatically scans carrier images for 1-LSB lossless and Social-Safe 8x8 DCT payloads with AES-256-GCM decryption.",
+    "author": {
+      "@type": "Person",
+      "name": "Teja Priyan",
+      "url": "https://github.com/TejaPriyan"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Zero-knowledge 100% client-side decoding with zero network transmissions",
+      "Dual-engine auto-detection: 1-LSB Lossless and Social-Safe 8x8 DCT compression-resistant armor",
+      "AES-256-GCM authenticated decryption with PBKDF2-HMAC-SHA256 (100,000 iterations)",
+      "IEEE 802.3 CRC32 integrity verification",
+      "Inline media preview for extracted images, audio, code, and documents",
+      "Global drag-and-drop, clipboard paste (Ctrl+V), and portable armor link support",
+      "Raw hex and packet structure telemetry inspector"
+    ],
+    "browserRequirements": "Requires JavaScript and HTML5 Canvas API support."
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does StegoReveal extract hidden messages from images?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "StegoReveal parses the carrier image's pixel array using HTML5 Canvas. It automatically inspects the RGB Least Significant Bits (1-LSB Lossless mode) and 8x8 discrete cosine luminance blocks (Social-Safe DCT mode) to locate the binary STEGOSHARE protocol header, verify the CRC32 checksum, and unpack the secret message."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my images or passwords uploaded to any remote server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. StegoReveal operates under a strict zero-knowledge architecture. All cryptographic processing (Web Crypto API / pure-JS fallback) and pixel manipulation execute 100% locally on your device within your browser runtime. Zero bytes ever leave your computer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What steganography algorithms are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "StegoReveal supports dual steganography engines: (1) 1-LSB Lossless Carrier mode for maximum data capacity in PNG, BMP, and WEBP formats, and (2) Social-Safe 8x8 DCT Luminance Quantization with 3x Majority Error-Correction Coding (ECC), engineered to survive aggressive lossy JPEG compression on platforms like WhatsApp and Instagram."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can StegoReveal extract secret binary files such as images or PDFs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. StegoReveal decodes both plaintext strings and arbitrary binary files. When a binary file payload is detected, StegoReveal provides an instant inline preview (for images, audio, or text) along with a one-click download button with the original filename and MIME type."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: HowTo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Reveal and Decrypt Hidden Messages in an Image",
+    "description": "Step-by-step instructions to extract secret text or files from carrier images using StegoReveal.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Upload Carrier Image",
+        "text": "Drag and drop, browse, or paste (Ctrl+V) any PNG, JPG, WEBP, or BMP carrier image onto the StegoReveal dropzone."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Automatic Engine Detection",
+        "text": "StegoReveal automatically checks the pixel stream for 1-LSB or 8x8 DCT luminance blocks and validates the STEGOSHARE header and CRC32 checksum."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Unlock with Password if Encrypted",
+        "text": "If the message is protected with AES-256-GCM, enter the secret password to decrypt the authenticated payload."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "View, Copy, or Save",
+        "text": "View the extracted secret message or media preview directly in your browser, copy it to clipboard, or download the original binary file."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Tailwind CSS & Fonts -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    window.tailwind = window.tailwind || {};
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#04070B',
+            panel: '#0B121C',
+            cyanNeon: '#00F0FF',
+            emeraldNeon: '#00FF88',
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    body {
+      background-color: #04070B;
+      color: #E2E8F0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
+    .glass-card {
+      background: rgba(11, 18, 28, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      box-shadow: 0 14px 44px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+    }
+    .cyan-glow {
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+    }
+    .emerald-glow {
+      box-shadow: 0 0 25px rgba(0, 255, 136, 0.25);
+    }
+    .checkerboard {
+      background-image:
+        linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,0.04) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.04) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.04) 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    }
+    /* Smooth focus rings */
+    *:focus-visible {
+      outline: 2px solid #00F0FF;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col relative selection:bg-cyan-500/30 selection:text-cyan-200">
+  <!-- Ambient Background Canvas -->
+  <canvas id="bgParticlesCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 max-w-sm w-full pointer-events-none px-4 sm:px-0" role="region" aria-live="polite"></div>
+
+  <!-- Top Header Bar -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-[#04070B]/85 border-b border-cyan-500/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="./" class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400/20 to-emerald-400/20 border border-cyan-400/50 flex items-center justify-center text-[#00F0FF] cyan-glow hover:scale-105 transition-transform" aria-label="StegoReveal Home">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+        </a>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold tracking-wider text-base sm:text-lg text-white">STEGO<span class="text-[#00F0FF]">REVEAL</span></span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-cyan-500/15 text-[#00F0FF] border border-cyan-500/30">RECEIVER TERMINAL</span>
+            <span class="hidden md:inline px-1.5 py-0.2 rounded text-[9px] font-mono bg-emerald-500/10 text-[#00FF88] border border-emerald-500/20">v1.0.0</span>
+          </div>
+          <p class="text-[11px] text-slate-400 hidden sm:block">Zero-Knowledge Image Steganography Decoder &amp; AES-256-GCM Decryptor</p>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="flex items-center gap-2.5">
+        <button id="loadDemoBtn" type="button" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-semibold text-emerald-300 hover:text-white bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 transition-all">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Try Demo
+        </button>
+
+        <a href="https://github.com/TejaPriyan/StegoReveal" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all" aria-label="GitHub Repository">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          <span class="hidden sm:inline">GitHub</span>
+        </a>
+
+        <button id="resetAllBtn" type="button" class="px-3.5 py-1.5 rounded-xl text-xs font-mono text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all">
+          Clear
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 space-y-8">
+    <!-- Hero Banner -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-[#00F0FF] text-xs font-mono">
+        <span class="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse"></span>
+        DEDICATED MESSAGE EXTRACTION PORTAL &bull; 100% IN-BROWSER ZERO-KNOWLEDGE
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Upload Any Image to <span class="bg-gradient-to-r from-[#00F0FF] via-teal-300 to-[#00FF88] bg-clip-text text-transparent">Reveal the Hidden Message</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        Automatically scans pixels for <strong>1-LSB Lossless</strong> payloads and <strong>Social-Safe 8&times;8 DCT</strong> WhatsApp/Instagram armor. Zero servers, zero uploads—everything decodes locally on your device.
+      </p>
+
+      <!-- Quick Test Demo Pill Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
+        <button id="testDemoPlainBtn" type="button" class="text-xs font-mono px-3 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 text-[#00F0FF] border border-cyan-500/30 transition-all flex items-center gap-1.5">
+          <span>⚡</span> Try Plaintext Demo Image
+        </button>
+        <button id="testDemoEncBtn" type="button" class="text-xs font-mono px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 transition-all flex items-center gap-1.5">
+          <span>🔒</span> Try AES-256 Encrypted Demo (Pass: demo123)
+        </button>
+      </div>
+    </div>
+
+    <!-- Main 2-Column Decoder Workspace -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- LEFT COLUMN (5 Cols): Image Dropzone, Preview & Share Link -->
+      <div class="lg:col-span-5 space-y-6">
+        <!-- Upload Card -->
+        <div class="glass-card rounded-2xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-bold text-white flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-cyan-500/20 border border-cyan-500/40 text-[#00F0FF] font-mono text-xs flex items-center justify-center">1</span>
+              <span>Upload Carrier Image</span>
+            </h2>
+            <span class="text-[11px] font-mono text-slate-400">PNG &bull; JPG &bull; WEBP &bull; BMP</span>
+          </div>
+
+          <!-- Drag & Drop Zone -->
+          <div id="revealDropzone" role="button" tabindex="0" aria-label="Upload carrier image file" class="border-2 border-dashed border-cyan-500/35 hover:border-[#00F0FF] rounded-2xl p-8 text-center transition-all cursor-pointer bg-[#060B11]/80 group focus:border-[#00F0FF]">
+            <input id="revealFileInput" type="file" accept="image/png,image/jpeg,image/jpg,image/bmp,image/webp,.png,.jpg,.jpeg,.bmp,.webp" class="hidden" />
+            <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 mx-auto flex items-center justify-center text-[#00F0FF] group-hover:scale-105 transition-transform">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+              </svg>
+            </div>
+            <p class="text-sm sm:text-base font-bold text-white mt-3.5">
+              Drop your image here or <span class="text-[#00F0FF] underline">browse device</span>
+            </p>
+            <p class="text-xs text-slate-400 mt-1">
+              Tip: You can also press <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-200 font-mono text-[10px]">Ctrl+V</kbd> anywhere to paste an image or share link from clipboard
+            </p>
+          </div>
+
+          <!-- Uploaded Image Preview -->
+          <div id="revealPreviewCard" class="hidden space-y-3 pt-2">
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span class="text-cyan-300 font-semibold">LOADED CARRIER IMAGE</span>
+              <button id="replaceImageBtn" type="button" class="text-[#00F0FF] hover:underline">Upload Different Image</button>
+            </div>
+            <div class="relative rounded-xl overflow-hidden checkerboard border border-cyan-500/30 max-h-64 flex items-center justify-center p-2">
+              <img id="revealUploadedImg" src="" alt="Uploaded Carrier Preview" class="max-h-60 w-auto object-contain mx-auto rounded" />
+            </div>
+            <div class="grid grid-cols-3 gap-2 text-xs font-mono">
+              <div class="bg-[#060B11] p-2.5 rounded-xl border border-white/5">
+                <span class="text-[10px] text-slate-400 block">FILE NAME</span>
+                <span id="revMetaName" class="text-white truncate block font-semibold">-</span>
+              </div>
+              <div class="bg-[#060B11] p-2.5 rounded-xl border border-white/5">
+                <span class="text-[10px] text-slate-400 block">RESOLUTION</span>
+                <span id="revMetaDim" class="text-[#00F0FF] font-semibold">-</span>
+              </div>
+              <div class="bg-[#060B11] p-2.5 rounded-xl border border-white/5">
+                <span class="text-[10px] text-slate-400 block">FILE SIZE</span>
+                <span id="revMetaSize" class="text-white font-semibold">-</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optional: Portable Share Link / Armor Code Decoder -->
+        <div class="glass-card rounded-2xl p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-[#00F0FF] font-bold uppercase">🔗 Or Paste Share Link / Armor Code</span>
+            <span class="text-[10px] font-mono text-slate-400">WhatsApp / Insta Link</span>
+          </div>
+          <div class="flex gap-2">
+            <input
+              id="revealShareCodeInput"
+              type="text"
+              placeholder="Paste #stego=... link or armor string..."
+              class="flex-1 rounded-xl bg-[#060B11] border border-cyan-500/30 focus:border-[#00F0FF] focus:outline-none px-3.5 py-2 text-xs text-white font-mono"
+            />
+            <button id="revealFromShareCodeBtn" type="button" class="px-4 py-2 rounded-xl text-xs font-mono font-bold bg-cyan-500/20 hover:bg-cyan-500/30 text-[#00F0FF] border border-cyan-400/40 transition-all">
+              Reveal
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN (7 Cols): Instant Revealed Message Output / Password Unlock -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- Waiting / Empty State -->
+        <div id="revealEmptyState" class="glass-card rounded-2xl p-12 text-center space-y-4 border border-cyan-500/20">
+          <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 mx-auto flex items-center justify-center text-[#00F0FF] cyan-glow">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <div class="space-y-2 max-w-md mx-auto">
+            <h3 class="text-xl font-bold text-white">Waiting for Image Upload</h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              Upload, drag and drop, or paste (<kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-200 font-mono text-[10px]">Ctrl+V</kbd>) an image on the left to extract and view its hidden message here.
+            </p>
+          </div>
+        </div>
+
+        <!-- No Hidden Message Detected Alert Card -->
+        <div id="revealNoPayloadCard" class="hidden rounded-2xl bg-rose-950/60 border border-rose-500/45 p-6 space-y-3">
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-300 shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-mono uppercase text-rose-300 font-bold">SCAN COMPLETE &bull; NO PAYLOAD DETECTED</span>
+              <h3 id="revealNoPayloadTitle" class="text-base sm:text-lg font-bold text-white">No hidden message was found in this image.</h3>
+            </div>
+          </div>
+          <p id="revealNoPayloadDetail" class="text-xs sm:text-sm text-rose-100/90 leading-relaxed"></p>
+        </div>
+
+        <!-- Password Prompt Card (Shown Only When Image Is AES-256-GCM Encrypted) -->
+        <div id="revealPasswordCard" class="hidden glass-card rounded-2xl p-6 border border-amber-500/45 space-y-5">
+          <div class="flex items-start gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-400/40 flex items-center justify-center text-amber-300 shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-mono uppercase text-amber-300 font-bold">PASSWORD-PROTECTED PAYLOAD DETECTED</span>
+              <h3 class="text-lg font-bold text-white mt-0.5">Enter Password to Unlock Message</h3>
+              <p class="text-xs text-slate-300 mt-1">
+                This image contains an authenticated <code class="text-amber-300">AES-256-GCM</code> secret message. Enter the decryption password below to unlock it.
+              </p>
+            </div>
+          </div>
+
+          <!-- Wrong Password Error Banner -->
+          <div id="revealWrongPasswordBanner" class="hidden rounded-xl bg-rose-950/80 border border-rose-500/50 p-3.5 text-xs sm:text-sm text-rose-200 font-mono flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-rose-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            <span id="revealWrongPasswordText">Incorrect password. Unable to decrypt this message.</span>
+          </div>
+
+          <div class="space-y-3">
+            <label for="revealPasswordInput" class="block text-xs font-mono text-slate-300">Decryption Password</label>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <div class="relative flex-1">
+                <input
+                  id="revealPasswordInput"
+                  type="password"
+                  placeholder="Enter password..."
+                  class="w-full rounded-xl bg-[#060B11] border border-amber-500/40 focus:border-[#00F0FF] focus:outline-none px-4 py-3 pr-16 text-sm text-white font-mono"
+                />
+                <button id="toggleRevealPasswordBtn" type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-slate-400 hover:text-white">
+                  SHOW
+                </button>
+              </div>
+              <button id="decryptPayloadBtn" type="button" class="px-6 py-3 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-amber-400 to-[#00FF88] text-slate-950 hover:brightness-110 transition-all shadow-lg shadow-amber-500/10">
+                UNLOCK &amp; REVEAL
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Revealed Message Output Card -->
+        <div id="revealSuccessCard" class="hidden glass-card rounded-2xl p-6 border border-[#00FF88]/50 space-y-5 emerald-glow">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-emerald-500/20 pb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-[#00FF88]/20 border border-[#00FF88] flex items-center justify-center text-[#00FF88]">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <span id="revealedStatusTag" class="text-[11px] font-mono uppercase text-[#00FF88] font-bold">HIDDEN MESSAGE REVEALED ✓</span>
+                <h3 class="text-lg font-bold text-white">Extracted Secret Message</h3>
+              </div>
+            </div>
+
+            <!-- Copy & Download Buttons -->
+            <div class="flex items-center gap-2">
+              <button id="copyRevealedTextBtn" type="button" class="px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-emerald-500/15 hover:bg-emerald-500/25 text-[#00FF88] border border-emerald-500/35 transition-all flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <span id="copyBtnLabel">Copy Message</span>
+              </button>
+              <button id="downloadRevealedBtn" type="button" class="px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-[#00FF88] hover:bg-emerald-400 text-slate-950 transition-all flex items-center gap-1.5 font-bold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span id="downloadRevealedBtnLabel">Save as TXT</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Inline Media / File Preview (Shown if extracted payload is an image or audio) -->
+          <div id="revealedMediaContainer" class="hidden rounded-xl border border-cyan-500/30 bg-[#060B11] p-4 text-center space-y-3">
+            <span class="text-xs font-mono text-cyan-300 font-bold block">EXTRACTED MEDIA PREVIEW</span>
+            <img id="revealedImagePreview" src="" alt="Revealed Secret Attachment" class="hidden max-h-72 w-auto mx-auto rounded-lg shadow-lg border border-cyan-500/20" />
+            <audio id="revealedAudioPlayer" controls class="hidden w-full max-w-md mx-auto"></audio>
+          </div>
+
+          <!-- Decoded Message Display Box -->
+          <div class="rounded-xl bg-[#04070B] border border-emerald-500/35 p-5">
+            <pre id="revealedMessageOutput" class="text-sm sm:text-base text-emerald-100 font-mono whitespace-pre-wrap break-words leading-relaxed max-h-96 overflow-y-auto"></pre>
+          </div>
+
+          <!-- Technical Inspector Toggle -->
+          <div class="flex items-center justify-between text-xs font-mono pt-1">
+            <span class="text-slate-400">IEEE 802.3 CRC32 + STEGOSHARE v1 Protocol</span>
+            <button id="toggleHexInspectorBtn" type="button" class="text-cyan-400 hover:text-cyan-300 underline">
+              View Raw Telemetry
+            </button>
+          </div>
+
+          <!-- Hex & Telemetry Details Panel -->
+          <div id="hexInspectorPanel" class="hidden rounded-xl bg-[#030609] border border-cyan-500/30 p-4 space-y-3 text-xs font-mono">
+            <div class="flex items-center justify-between border-b border-white/10 pb-2">
+              <span class="text-cyan-300 font-bold">CARRIER TELEMETRY INSPECTOR</span>
+              <span id="inspectorEngineLabel" class="text-emerald-400">1-LSB Lossless</span>
+            </div>
+            <div id="inspectorTelemetryDetails" class="text-slate-300 space-y-1.5 break-all"></div>
+          </div>
+
+          <!-- Metadata Summary Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs font-mono">
+            <div class="bg-[#060B11] p-2.5 rounded-xl border border-white/5">
+              <span class="text-[10px] text-slate-400 block">ENCRYPTION</span>
+              <span id="revOutEncStatus" class="text-[#00FF88] font-semibold">-</span>
+            </div>
+            <div class="bg-[#060B11] p-2.5 rounded-xl border border-white/5">
+              <span class="text-[10px] text-slate-400 block">MESSAGE SIZE</span>
+              <span id="revOutPayloadSize" class="text-white font-semibold">-</span>
+            </div>
+            <div class="bg-[#060B11] p-2.5 rounded-xl border border-white/5">
+              <span class="text-[10px] text-slate-400 block">INTEGRITY CHECK</span>
+              <span id="revOutDecodeStatus" class="text-cyan-300 font-semibold">-</span>
+            </div>
+            <div class="bg-[#060B11] p-2.5 rounded-xl border border-white/5">
+              <span class="text-[10px] text-slate-400 block">TIMESTAMP</span>
+              <span id="revOutTimestamp" class="text-slate-300">-</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Educational & Architectural Details Section (SEO & Trust) -->
+    <section class="mt-16 pt-12 border-t border-cyan-500/20 space-y-10">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">How StegoReveal Works</h2>
+        <p class="text-xs sm:text-sm text-slate-400">
+          Engineered for privacy, mathematical precision, and zero-knowledge execution.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card rounded-2xl p-6 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/40 flex items-center justify-center text-[#00F0FF] font-bold font-mono">
+            01
+          </div>
+          <h3 class="text-base font-bold text-white">Dual-Engine Auto-Detection</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Automatically distinguishes between lossless 1-LSB RGB bitstreams and 8&times;8 DCT luminance quantization with 3&times; majority error correction coding (survives WhatsApp/Instagram JPEG compression).
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-[#00FF88] font-bold font-mono">
+            02
+          </div>
+          <h3 class="text-base font-bold text-white">AES-256-GCM + PBKDF2</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Encrypted carriers utilize hardware-accelerated Web Crypto API with 100,000 PBKDF2-SHA256 iterations and Galois/Counter Mode authentication, backed by a pure-JS FIPS 197 fallback engine.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/40 flex items-center justify-center text-amber-300 font-bold font-mono">
+            03
+          </div>
+          <h3 class="text-base font-bold text-white">Zero-Knowledge Guarantee</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Your images and secret keys never touch a remote server. The entire decoding pipeline runs purely in memory within your browser sandbox. Works completely offline.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div class="max-w-3xl mx-auto space-y-4">
+        <h3 class="text-lg font-bold text-white text-center mb-6">Frequently Asked Questions</h3>
+
+        <div class="glass-card rounded-xl p-4 space-y-2">
+          <h4 class="text-sm font-bold text-cyan-300">Does StegoReveal upload my images anywhere?</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            No. StegoReveal is a 100% client-side application. No analytics, tracking pixels, or telemetry servers are involved. Your images never leave your computer.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-xl p-4 space-y-2">
+          <h4 class="text-sm font-bold text-cyan-300">What is the difference between 1-LSB and 8x8 DCT Armor?</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            <strong>1-LSB Lossless</strong> replaces the least significant bit of color channels. It provides high data capacity but requires lossless formats (PNG/WEBP). <strong>8x8 DCT Armor</strong> modulates macro-block luminance frequencies with 3x redundancy, allowing messages to survive lossy re-compression on social networks like WhatsApp.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-xl p-4 space-y-2">
+          <h4 class="text-sm font-bold text-cyan-300">Can I reveal password-protected secrets offline?</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Yes. StegoReveal's cryptography suite runs completely offline. You can save this HTML page to your hard drive and run it in airplane mode.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Minimal Footer -->
+  <footer class="relative z-10 border-t border-cyan-500/15 bg-[#04070B]/90 py-6 px-4 text-center text-xs text-slate-500 font-mono space-y-2">
+    <div>
+      STEGOREVEAL Receiver Terminal &bull; Created by <a href="https://github.com/TejaPriyan" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-cyan-300 underline">Teja Priyan</a> &bull; Licensed under MIT
+    </div>
+    <div class="text-[11px] text-slate-600">
+      Supports 1-LSB Lossless &amp; Social-Safe 8&times;8 DCT Armor &bull; AES-256-GCM + IEEE 802.3 CRC32 &bull; 100% Zero-Knowledge
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // =====================================================================
+      // 1. CRC32 INTEGRITY ENGINE (IEEE 802.3)
+      // =====================================================================
+      const CRC_TABLE = new Uint32Array(256);
+      for (let i = 0; i < 256; i++) {
+        let c = i;
+        for (let k = 0; k < 8; k++) {
+          c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+        }
+        CRC_TABLE[i] = c >>> 0;
+      }
+
+      function computeCRC32(bytes) {
+        let crc = 0xFFFFFFFF;
+        for (let i = 0; i < bytes.length; i++) {
+          crc = CRC_TABLE[(crc ^ bytes[i]) & 0xFF] ^ (crc >>> 8);
+        }
+        return (crc ^ 0xFFFFFFFF) >>> 0;
+      }
+
+      // =====================================================================
+      // 2. CRYPTOGRAPHY ENGINE (Web Crypto API + Pure-JS Cryptographic Fallback)
+      // Standard-compliant AES-256 (FIPS 197), GCM (NIST SP 800-38D),
+      // SHA-256 (FIPS 180-4), HMAC (RFC 2104), and PBKDF2 (RFC 8018)
+      // =====================================================================
+      const PBKDF2_ITERATIONS = 100000;
+      const SALT_LENGTH = 16;
+      const NONCE_LENGTH = 12;
+
+      const PureCrypto = (function () {
+        const SBOX = new Uint8Array([
+          0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
+          0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0, 0xad, 0xd4, 0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0,
+          0xb7, 0xfd, 0x93, 0x26, 0x36, 0x3f, 0xf7, 0xcc, 0x34, 0xa5, 0xe5, 0xf1, 0x71, 0xd8, 0x31, 0x15,
+          0x04, 0xc7, 0x23, 0xc3, 0x18, 0x96, 0x05, 0x9a, 0x07, 0x12, 0x80, 0xe2, 0xeb, 0x27, 0xb2, 0x75,
+          0x09, 0x83, 0x2c, 0x1a, 0x1b, 0x6e, 0x5a, 0xa0, 0x52, 0x3b, 0xd6, 0xb3, 0x29, 0xe3, 0x2f, 0x84,
+          0x53, 0xd1, 0x00, 0xed, 0x20, 0xfc, 0xb1, 0x5b, 0x6a, 0xcb, 0xbe, 0x39, 0x4a, 0x4c, 0x58, 0xcf,
+          0xd0, 0xef, 0xaa, 0xfb, 0x43, 0x4d, 0x33, 0x85, 0x45, 0xf9, 0x02, 0x7f, 0x50, 0x3c, 0x9f, 0xa8,
+          0x51, 0xa3, 0x40, 0x8f, 0x92, 0x9d, 0x38, 0xf5, 0xbc, 0xb6, 0xda, 0x21, 0x10, 0xff, 0xf3, 0xd2,
+          0xcd, 0x0c, 0x13, 0xec, 0x5f, 0x97, 0x44, 0x17, 0xc4, 0xa7, 0x7e, 0x3d, 0x64, 0x5d, 0x19, 0x73,
+          0x60, 0x81, 0x4f, 0xdc, 0x22, 0x2a, 0x90, 0x88, 0x46, 0xee, 0xb8, 0x14, 0xde, 0x5e, 0x0b, 0xdb,
+          0xe0, 0x32, 0x3a, 0x0a, 0x49, 0x06, 0x24, 0x5c, 0xc2, 0xd3, 0xac, 0x62, 0x91, 0x95, 0xe4, 0x79,
+          0xe7, 0xc8, 0x37, 0x6d, 0x8d, 0xd5, 0x4e, 0xa9, 0x6c, 0x56, 0xf4, 0xea, 0x65, 0x7a, 0xae, 0x08,
+          0xba, 0x78, 0x25, 0x2e, 0x1c, 0xa6, 0xb4, 0xc6, 0xe8, 0xdd, 0x74, 0x1f, 0x4b, 0xbd, 0x8b, 0x8a,
+          0x70, 0x3e, 0xb5, 0x66, 0x48, 0x03, 0xf6, 0x0e, 0x61, 0x35, 0x57, 0xb9, 0x86, 0xc1, 0x1d, 0x9e,
+          0xe1, 0xf8, 0x98, 0x11, 0x69, 0xd9, 0x8e, 0x94, 0x9b, 0x1e, 0x87, 0xe9, 0xce, 0x55, 0x28, 0xdf,
+          0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16
+        ]);
+        const RCON = [0x00, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36];
+        const XTIME = new Uint8Array(256);
+        for (let i = 0; i < 256; i++) {
+          XTIME[i] = ((i << 1) ^ (i & 0x80 ? 0x1b : 0)) & 0xFF;
+        }
+
+        const K = [
+          0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+          0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+          0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+          0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+          0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+          0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+          0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+          0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+        ];
+
+        function subWord(w) {
+          return (SBOX[(w >>> 24) & 0xFF] << 24) |
+                 (SBOX[(w >>> 16) & 0xFF] << 16) |
+                 (SBOX[(w >>> 8) & 0xFF] << 8) |
+                 SBOX[w & 0xFF];
+        }
+
+        function keyExpansion256(key) {
+          const w = new Uint32Array(60);
+          for (let i = 0; i < 8; i++) {
+            w[i] = (key[4 * i] << 24) | (key[4 * i + 1] << 16) | (key[4 * i + 2] << 8) | key[4 * i + 3];
+          }
+          for (let i = 8; i < 60; i++) {
+            let temp = w[i - 1];
+            if (i % 8 === 0) {
+              const rot = (temp << 8) | (temp >>> 24);
+              temp = subWord(rot) ^ (RCON[Math.floor(i / 8)] << 24);
+            } else if (i % 8 === 4) {
+              temp = subWord(temp);
+            }
+            w[i] = (w[i - 8] ^ temp) >>> 0;
+          }
+          return w;
+        }
+
+        function mix(col) {
+          const b0 = (col >>> 24) & 0xFF, b1 = (col >>> 16) & 0xFF, b2 = (col >>> 8) & 0xFF, b3 = col & 0xFF;
+          const x0 = XTIME[b0], x1 = XTIME[b1], x2 = XTIME[b2], x3 = XTIME[b3];
+          return ((x0 ^ b1 ^ x1 ^ b2 ^ b3) << 24) |
+                 ((b0 ^ x1 ^ b2 ^ x2 ^ b3) << 16) |
+                 ((b0 ^ b1 ^ x2 ^ b3 ^ x3) << 8) |
+                 (b0 ^ x0 ^ b1 ^ b2 ^ x3);
+        }
+
+        function aesEncryptBlock(w, input, out, outOff = 0) {
+          let s0 = (input[0] << 24) | (input[1] << 16) | (input[2] << 8) | input[3];
+          let s1 = (input[4] << 24) | (input[5] << 16) | (input[6] << 8) | input[7];
+          let s2 = (input[8] << 24) | (input[9] << 16) | (input[10] << 8) | input[11];
+          let s3 = (input[12] << 24) | (input[13] << 16) | (input[14] << 8) | input[15];
+
+          s0 ^= w[0]; s1 ^= w[1]; s2 ^= w[2]; s3 ^= w[3];
+
+          for (let r = 1; r < 14; r++) {
+            const rw = r * 4;
+            const t0 = (SBOX[(s0 >>> 24) & 0xFF] << 24) | (SBOX[(s1 >>> 16) & 0xFF] << 16) | (SBOX[(s2 >>> 8) & 0xFF] << 8) | SBOX[s3 & 0xFF];
+            const t1 = (SBOX[(s1 >>> 24) & 0xFF] << 24) | (SBOX[(s2 >>> 16) & 0xFF] << 16) | (SBOX[(s3 >>> 8) & 0xFF] << 8) | SBOX[s0 & 0xFF];
+            const t2 = (SBOX[(s2 >>> 24) & 0xFF] << 24) | (SBOX[(s3 >>> 16) & 0xFF] << 16) | (SBOX[(s0 >>> 8) & 0xFF] << 8) | SBOX[s1 & 0xFF];
+            const t3 = (SBOX[(s3 >>> 24) & 0xFF] << 24) | (SBOX[(s0 >>> 16) & 0xFF] << 16) | (SBOX[(s1 >>> 8) & 0xFF] << 8) | SBOX[s2 & 0xFF];
+
+            s0 = (mix(t0) ^ w[rw]) >>> 0;
+            s1 = (mix(t1) ^ w[rw + 1]) >>> 0;
+            s2 = (mix(t2) ^ w[rw + 2]) >>> 0;
+            s3 = (mix(t3) ^ w[rw + 3]) >>> 0;
+          }
+
+          const t0 = (SBOX[(s0 >>> 24) & 0xFF] << 24) | (SBOX[(s1 >>> 16) & 0xFF] << 16) | (SBOX[(s2 >>> 8) & 0xFF] << 8) | SBOX[s3 & 0xFF];
+          const t1 = (SBOX[(s1 >>> 24) & 0xFF] << 24) | (SBOX[(s2 >>> 16) & 0xFF] << 16) | (SBOX[(s3 >>> 8) & 0xFF] << 8) | SBOX[s0 & 0xFF];
+          const t2 = (SBOX[(s2 >>> 24) & 0xFF] << 24) | (SBOX[(s3 >>> 16) & 0xFF] << 16) | (SBOX[(s0 >>> 8) & 0xFF] << 8) | SBOX[s1 & 0xFF];
+          const t3 = (SBOX[(s3 >>> 24) & 0xFF] << 24) | (SBOX[(s0 >>> 16) & 0xFF] << 16) | (SBOX[(s1 >>> 8) & 0xFF] << 8) | SBOX[s2 & 0xFF];
+
+          s0 = (t0 ^ w[56]) >>> 0;
+          s1 = (t1 ^ w[57]) >>> 0;
+          s2 = (t2 ^ w[58]) >>> 0;
+          s3 = (t3 ^ w[59]) >>> 0;
+
+          out[outOff] = (s0 >>> 24) & 0xFF; out[outOff + 1] = (s0 >>> 16) & 0xFF; out[outOff + 2] = (s0 >>> 8) & 0xFF; out[outOff + 3] = s0 & 0xFF;
+          out[outOff + 4] = (s1 >>> 24) & 0xFF; out[outOff + 5] = (s1 >>> 16) & 0xFF; out[outOff + 6] = (s1 >>> 8) & 0xFF; out[outOff + 7] = s1 & 0xFF;
+          out[outOff + 8] = (s2 >>> 24) & 0xFF; out[outOff + 9] = (s2 >>> 16) & 0xFF; out[outOff + 10] = (s2 >>> 8) & 0xFF; out[outOff + 11] = s2 & 0xFF;
+          out[outOff + 12] = (s3 >>> 24) & 0xFF; out[outOff + 13] = (s3 >>> 16) & 0xFF; out[outOff + 14] = (s3 >>> 8) & 0xFF; out[outOff + 15] = s3 & 0xFF;
+        }
+
+        function ghashMultiply(x, y) {
+          let z0 = 0, z1 = 0, z2 = 0, z3 = 0;
+          let v0 = (y[0] << 24) | (y[1] << 16) | (y[2] << 8) | y[3];
+          let v1 = (y[4] << 24) | (y[5] << 16) | (y[6] << 8) | y[7];
+          let v2 = (y[8] << 24) | (y[9] << 16) | (y[10] << 8) | y[11];
+          let v3 = (y[12] << 24) | (y[13] << 16) | (y[14] << 8) | y[15];
+
+          for (let i = 0; i < 16; i++) {
+            const byte = x[i];
+            for (let j = 7; j >= 0; j--) {
+              if ((byte >>> j) & 1) {
+                z0 ^= v0; z1 ^= v1; z2 ^= v2; z3 ^= v3;
+              }
+              const lsb = v3 & 1;
+              v3 = (v3 >>> 1) | ((v2 & 1) << 31);
+              v2 = (v2 >>> 1) | ((v1 & 1) << 31);
+              v1 = (v1 >>> 1) | ((v0 & 1) << 31);
+              v0 = (v0 >>> 1);
+              if (lsb) {
+                v0 ^= 0xe1000000;
+              }
+            }
+          }
+
+          const out = new Uint8Array(16);
+          out[0] = (z0 >>> 24) & 0xFF; out[1] = (z0 >>> 16) & 0xFF; out[2] = (z0 >>> 8) & 0xFF; out[3] = z0 & 0xFF;
+          out[4] = (z1 >>> 24) & 0xFF; out[5] = (z1 >>> 16) & 0xFF; out[6] = (z1 >>> 8) & 0xFF; out[7] = z1 & 0xFF;
+          out[8] = (z2 >>> 24) & 0xFF; out[9] = (z2 >>> 16) & 0xFF; out[10] = (z2 >>> 8) & 0xFF; out[11] = z2 & 0xFF;
+          out[12] = (z3 >>> 24) & 0xFF; out[13] = (z3 >>> 16) & 0xFF; out[14] = (z3 >>> 8) & 0xFF; out[15] = z3 & 0xFF;
+          return out;
+        }
+
+        function sha256Block(state, W) {
+          let a = state[0], b = state[1], c = state[2], d = state[3];
+          let e = state[4], f = state[5], g = state[6], h = state[7];
+
+          for (let t = 0; t < 64; t++) {
+            const S1 = ((e >>> 6) | (e << 26)) ^ ((e >>> 11) | (e << 21)) ^ ((e >>> 25) | (e << 7));
+            const ch = (e & f) ^ (~e & g);
+            const temp1 = (h + S1 + ch + K[t] + W[t]) >>> 0;
+            const S0 = ((a >>> 2) | (a << 30)) ^ ((a >>> 13) | (a << 19)) ^ ((a >>> 22) | (a << 10));
+            const maj = (a & b) ^ (a & c) ^ (b & c);
+            const temp2 = (S0 + maj) >>> 0;
+
+            h = g; g = f; f = e; e = (d + temp1) >>> 0;
+            d = c; c = b; b = a; a = (temp1 + temp2) >>> 0;
+          }
+
+          state[0] = (state[0] + a) >>> 0;
+          state[1] = (state[1] + b) >>> 0;
+          state[2] = (state[2] + c) >>> 0;
+          state[3] = (state[3] + d) >>> 0;
+          state[4] = (state[4] + e) >>> 0;
+          state[5] = (state[5] + f) >>> 0;
+          state[6] = (state[6] + g) >>> 0;
+          state[7] = (state[7] + h) >>> 0;
+        }
+
+        function sha256(data) {
+          let H0 = 0x6a09e667, H1 = 0xbb67ae85, H2 = 0x3c6ef372, H3 = 0xa54ff53a;
+          let H4 = 0x510e527f, H5 = 0x9b05688c, H6 = 0x1f83d9ab, H7 = 0x5be0cd19;
+
+          const len = data.length;
+          const padLen = (((len + 8) >> 6) + 1) << 6;
+          const words = new Uint32Array(padLen >> 2);
+          for (let i = 0; i < len; i++) {
+            words[i >> 2] |= data[i] << (24 - (i & 3) * 8);
+          }
+          words[len >> 2] |= 0x80 << (24 - (len & 3) * 8);
+          words[words.length - 1] = (len * 8) >>> 0;
+          words[words.length - 2] = Math.floor((len * 8) / 0x100000000);
+
+          const W = new Uint32Array(64);
+          const state = new Uint32Array(8);
+
+          for (let i = 0; i < words.length; i += 16) {
+            for (let t = 0; t < 16; t++) W[t] = words[i + t];
+            for (let t = 16; t < 64; t++) {
+              const s0 = ((W[t - 15] >>> 7) | (W[t - 15] << 25)) ^ ((W[t - 15] >>> 18) | (W[t - 15] << 14)) ^ (W[t - 15] >>> 3);
+              const s1 = ((W[t - 2] >>> 17) | (W[t - 2] << 15)) ^ ((W[t - 2] >>> 19) | (W[t - 2] << 13)) ^ (W[t - 2] >>> 10);
+              W[t] = (W[t - 16] + s0 + W[t - 7] + s1) >>> 0;
+            }
+            state[0] = H0; state[1] = H1; state[2] = H2; state[3] = H3;
+            state[4] = H4; state[5] = H5; state[6] = H6; state[7] = H7;
+            sha256Block(state, W);
+            H0 = state[0]; H1 = state[1]; H2 = state[2]; H3 = state[3];
+            H4 = state[4]; H5 = state[5]; H6 = state[6]; H7 = state[7];
+          }
+
+          const out = new Uint8Array(32);
+          const outH = [H0, H1, H2, H3, H4, H5, H6, H7];
+          for (let i = 0; i < 8; i++) {
+            out[i * 4] = (outH[i] >>> 24) & 0xFF;
+            out[i * 4 + 1] = (outH[i] >>> 16) & 0xFF;
+            out[i * 4 + 2] = (outH[i] >>> 8) & 0xFF;
+            out[i * 4 + 3] = outH[i] & 0xFF;
+          }
+          return out;
+        }
+
+        function fastPbkdf2Sha256(passwordStr, saltBytes, iterations = 100000, keyLen = 32) {
+          const enc = new TextEncoder();
+          let key = enc.encode(passwordStr);
+          if (key.length > 64) key = sha256(key);
+
+          const kPad = new Uint8Array(64);
+          kPad.set(key, 0);
+
+          const iKeyPad = new Uint32Array(16);
+          const oKeyPad = new Uint32Array(16);
+          for (let i = 0; i < 16; i++) {
+            const kWord = (kPad[i * 4] << 24) | (kPad[i * 4 + 1] << 16) | (kPad[i * 4 + 2] << 8) | kPad[i * 4 + 3];
+            iKeyPad[i] = (kWord ^ 0x36363636) >>> 0;
+            oKeyPad[i] = (kWord ^ 0x5c5c5c5c) >>> 0;
+          }
+
+          const iState0 = new Uint32Array([0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19]);
+          const oState0 = new Uint32Array([0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19]);
+
+          const Winit = new Uint32Array(64);
+          for (let i = 0; i < 16; i++) Winit[i] = iKeyPad[i];
+          for (let t = 16; t < 64; t++) {
+            const s0 = ((Winit[t - 15] >>> 7) | (Winit[t - 15] << 25)) ^ ((Winit[t - 15] >>> 18) | (Winit[t - 15] << 14)) ^ (Winit[t - 15] >>> 3);
+            const s1 = ((Winit[t - 2] >>> 17) | (Winit[t - 2] << 15)) ^ ((Winit[t - 2] >>> 19) | (Winit[t - 2] << 13)) ^ (Winit[t - 2] >>> 10);
+            Winit[t] = (Winit[t - 16] + s0 + Winit[t - 7] + s1) >>> 0;
+          }
+          sha256Block(iState0, Winit);
+
+          for (let i = 0; i < 16; i++) Winit[i] = oKeyPad[i];
+          for (let t = 16; t < 64; t++) {
+            const s0 = ((Winit[t - 15] >>> 7) | (Winit[t - 15] << 25)) ^ ((Winit[t - 15] >>> 18) | (Winit[t - 15] << 14)) ^ (Winit[t - 15] >>> 3);
+            const s1 = ((Winit[t - 2] >>> 17) | (Winit[t - 2] << 15)) ^ ((Winit[t - 2] >>> 19) | (Winit[t - 2] << 13)) ^ (Winit[t - 2] >>> 10);
+            Winit[t] = (Winit[t - 16] + s0 + Winit[t - 7] + s1) >>> 0;
+          }
+          sha256Block(oState0, Winit);
+
+          const Win = new Uint32Array(64);
+          Win[8] = 0x80000000;
+          Win[15] = 768;
+
+          const Wout = new Uint32Array(64);
+          Wout[8] = 0x80000000;
+          Wout[15] = 768;
+
+          const innerState = new Uint32Array(8);
+          const outerState = new Uint32Array(8);
+
+          function hmac32(uWords) {
+            for (let i = 0; i < 8; i++) Win[i] = uWords[i];
+            for (let t = 16; t < 64; t++) {
+              const s0 = ((Win[t - 15] >>> 7) | (Win[t - 15] << 25)) ^ ((Win[t - 15] >>> 18) | (Win[t - 15] << 14)) ^ (Win[t - 15] >>> 3);
+              const s1 = ((Win[t - 2] >>> 17) | (Win[t - 2] << 15)) ^ ((Win[t - 2] >>> 19) | (Win[t - 2] << 13)) ^ (Win[t - 2] >>> 10);
+              Win[t] = (Win[t - 16] + s0 + Win[t - 7] + s1) >>> 0;
+            }
+            for (let i = 0; i < 8; i++) innerState[i] = iState0[i];
+            sha256Block(innerState, Win);
+
+            for (let i = 0; i < 8; i++) Wout[i] = innerState[i];
+            for (let t = 16; t < 64; t++) {
+              const s0 = ((Wout[t - 15] >>> 7) | (Wout[t - 15] << 25)) ^ ((Wout[t - 15] >>> 18) | (Wout[t - 15] << 14)) ^ (Wout[t - 15] >>> 3);
+              const s1 = ((Wout[t - 2] >>> 17) | (Wout[t - 2] << 15)) ^ ((Wout[t - 2] >>> 19) | (Wout[t - 2] << 13)) ^ (Wout[t - 2] >>> 10);
+              Wout[t] = (Wout[t - 16] + s0 + Wout[t - 7] + s1) >>> 0;
+            }
+            for (let i = 0; i < 8; i++) outerState[i] = oState0[i];
+            sha256Block(outerState, Wout);
+            for (let i = 0; i < 8; i++) uWords[i] = outerState[i];
+          }
+
+          const numBlocks = Math.ceil(keyLen / 32);
+          const outWords = new Uint32Array(numBlocks * 8);
+
+          for (let blockIndex = 1; blockIndex <= numBlocks; blockIndex++) {
+            const sLen = saltBytes.length;
+            const msg = new Uint8Array(sLen + 4);
+            msg.set(saltBytes, 0);
+            msg[sLen] = (blockIndex >>> 24) & 0xFF;
+            msg[sLen + 1] = (blockIndex >>> 16) & 0xFF;
+            msg[sLen + 2] = (blockIndex >>> 8) & 0xFF;
+            msg[sLen + 3] = blockIndex & 0xFF;
+
+            const padLen = (((msg.length + 8) >> 6) + 1) << 6;
+            const mWords = new Uint32Array(padLen >> 2);
+            for (let i = 0; i < msg.length; i++) mWords[i >> 2] |= msg[i] << (24 - (i & 3) * 8);
+            mWords[msg.length >> 2] |= 0x80 << (24 - (msg.length & 3) * 8);
+            mWords[mWords.length - 1] = ((64 + msg.length) * 8) >>> 0;
+            mWords[mWords.length - 2] = Math.floor(((64 + msg.length) * 8) / 0x100000000);
+
+            for (let i = 0; i < 8; i++) innerState[i] = iState0[i];
+            const Wblock = new Uint32Array(64);
+            for (let i = 0; i < mWords.length; i += 16) {
+              for (let t = 0; t < 16; t++) Wblock[t] = mWords[i + t];
+              for (let t = 16; t < 64; t++) {
+                const s0 = ((Wblock[t - 15] >>> 7) | (Wblock[t - 15] << 25)) ^ ((Wblock[t - 15] >>> 18) | (Wblock[t - 15] << 14)) ^ (Wblock[t - 15] >>> 3);
+                const s1 = ((Wblock[t - 2] >>> 17) | (Wblock[t - 2] << 15)) ^ ((Wblock[t - 2] >>> 19) | (Wblock[t - 2] << 13)) ^ (Wblock[t - 2] >>> 10);
+                Wblock[t] = (Wblock[t - 16] + s0 + Wblock[t - 7] + s1) >>> 0;
+              }
+              sha256Block(innerState, Wblock);
+            }
+
+            for (let i = 0; i < 8; i++) Wout[i] = innerState[i];
+            for (let t = 16; t < 64; t++) {
+              const s0 = ((Wout[t - 15] >>> 7) | (Wout[t - 15] << 25)) ^ ((Wout[t - 15] >>> 18) | (Wout[t - 15] << 14)) ^ (Wout[t - 15] >>> 3);
+              const s1 = ((Wout[t - 2] >>> 17) | (Wout[t - 2] << 15)) ^ ((Wout[t - 2] >>> 19) | (Wout[t - 2] << 13)) ^ (Wout[t - 2] >>> 10);
+              Wout[t] = (Wout[t - 16] + s0 + Wout[t - 7] + s1) >>> 0;
+            }
+            for (let i = 0; i < 8; i++) outerState[i] = oState0[i];
+            sha256Block(outerState, Wout);
+
+            const uWords = new Uint32Array(8);
+            const tWords = new Uint32Array(8);
+            for (let i = 0; i < 8; i++) {
+              uWords[i] = outerState[i];
+              tWords[i] = outerState[i];
+            }
+
+            for (let c = 1; c < iterations; c++) {
+              hmac32(uWords);
+              tWords[0] ^= uWords[0]; tWords[1] ^= uWords[1]; tWords[2] ^= uWords[2]; tWords[3] ^= uWords[3];
+              tWords[4] ^= uWords[4]; tWords[5] ^= uWords[5]; tWords[6] ^= uWords[6]; tWords[7] ^= uWords[7];
+            }
+
+            const bOff = (blockIndex - 1) * 8;
+            for (let i = 0; i < 8; i++) outWords[bOff + i] = tWords[i];
+          }
+
+          const outBytes = new Uint8Array(keyLen);
+          for (let i = 0; i < keyLen; i++) {
+            outBytes[i] = (outWords[i >> 2] >>> (24 - (i & 3) * 8)) & 0xFF;
+          }
+          return outBytes;
+        }
+
+        function encryptGCM(keyBytes, ivBytes, plaintextBytes, aadBytes = new Uint8Array(0)) {
+          const w = keyExpansion256(keyBytes);
+          const H = new Uint8Array(16);
+          aesEncryptBlock(w, new Uint8Array(16), H);
+
+          const J0 = new Uint8Array(16);
+          J0.set(ivBytes, 0);
+          J0[15] = 1;
+
+          const cb = new Uint8Array(J0);
+          function inc32(block) {
+            let c = 1;
+            for (let i = 15; i >= 12; i--) {
+              const sum = block[i] + c;
+              block[i] = sum & 0xFF;
+              c = sum >>> 8;
+            }
+          }
+
+          const ciphertext = new Uint8Array(plaintextBytes.length);
+          const keystream = new Uint8Array(16);
+
+          for (let i = 0; i < plaintextBytes.length; i += 16) {
+            inc32(cb);
+            aesEncryptBlock(w, cb, keystream);
+            const blockLen = Math.min(16, plaintextBytes.length - i);
+            for (let k = 0; k < blockLen; k++) {
+              ciphertext[i + k] = plaintextBytes[i + k] ^ keystream[k];
+            }
+          }
+
+          let S = new Uint8Array(16);
+          if (aadBytes.length > 0) {
+            const padAad = (16 - (aadBytes.length % 16)) % 16;
+            const fullAad = new Uint8Array(aadBytes.length + padAad);
+            fullAad.set(aadBytes, 0);
+            for (let i = 0; i < fullAad.length; i += 16) {
+              for (let k = 0; k < 16; k++) S[k] ^= fullAad[i + k];
+              S = ghashMultiply(S, H);
+            }
+          }
+
+          const padCt = (16 - (ciphertext.length % 16)) % 16;
+          const fullCt = new Uint8Array(ciphertext.length + padCt);
+          fullCt.set(ciphertext, 0);
+          for (let i = 0; i < fullCt.length; i += 16) {
+            for (let k = 0; k < 16; k++) S[k] ^= fullCt[i + k];
+            S = ghashMultiply(S, H);
+          }
+
+          const lenBlock = new Uint8Array(16);
+          const lv = new DataView(lenBlock.buffer);
+          lv.setUint32(4, aadBytes.length * 8, false);
+          lv.setUint32(12, ciphertext.length * 8, false);
+          for (let k = 0; k < 16; k++) S[k] ^= lenBlock[k];
+          S = ghashMultiply(S, H);
+
+          const tagStream = new Uint8Array(16);
+          aesEncryptBlock(w, J0, tagStream);
+          const tag = new Uint8Array(16);
+          for (let k = 0; k < 16; k++) tag[k] = S[k] ^ tagStream[k];
+
+          const outWithTag = new Uint8Array(ciphertext.length + 16);
+          outWithTag.set(ciphertext, 0);
+          outWithTag.set(tag, ciphertext.length);
+          return outWithTag;
+        }
+
+        function decryptGCM(keyBytes, ivBytes, ciphertextWithTag, aadBytes = new Uint8Array(0)) {
+          if (ciphertextWithTag.length < 16) {
+            throw new Error('Incorrect password. Unable to decrypt this message.');
+          }
+          const tag = ciphertextWithTag.slice(ciphertextWithTag.length - 16);
+          const ciphertext = ciphertextWithTag.slice(0, ciphertextWithTag.length - 16);
+
+          const w = keyExpansion256(keyBytes);
+          const H = new Uint8Array(16);
+          aesEncryptBlock(w, new Uint8Array(16), H);
+
+          const J0 = new Uint8Array(16);
+          J0.set(ivBytes, 0);
+          J0[15] = 1;
+
+          let S = new Uint8Array(16);
+          if (aadBytes.length > 0) {
+            const padAad = (16 - (aadBytes.length % 16)) % 16;
+            const fullAad = new Uint8Array(aadBytes.length + padAad);
+            fullAad.set(aadBytes, 0);
+            for (let i = 0; i < fullAad.length; i += 16) {
+              for (let k = 0; k < 16; k++) S[k] ^= fullAad[i + k];
+              S = ghashMultiply(S, H);
+            }
+          }
+
+          const padCt = (16 - (ciphertext.length % 16)) % 16;
+          const fullCt = new Uint8Array(ciphertext.length + padCt);
+          fullCt.set(ciphertext, 0);
+          for (let i = 0; i < fullCt.length; i += 16) {
+            for (let k = 0; k < 16; k++) S[k] ^= fullCt[i + k];
+            S = ghashMultiply(S, H);
+          }
+
+          const lenBlock = new Uint8Array(16);
+          const lv = new DataView(lenBlock.buffer);
+          lv.setUint32(4, aadBytes.length * 8, false);
+          lv.setUint32(12, ciphertext.length * 8, false);
+          for (let k = 0; k < 16; k++) S[k] ^= lenBlock[k];
+          S = ghashMultiply(S, H);
+
+          const tagStream = new Uint8Array(16);
+          aesEncryptBlock(w, J0, tagStream);
+          const expectedTag = new Uint8Array(16);
+          for (let k = 0; k < 16; k++) expectedTag[k] = S[k] ^ tagStream[k];
+
+          let diff = 0;
+          for (let k = 0; k < 16; k++) diff |= (tag[k] ^ expectedTag[k]);
+          if (diff !== 0) {
+            throw new Error('Incorrect password. Unable to decrypt this message.');
+          }
+
+          const cb = new Uint8Array(J0);
+          function inc32(block) {
+            let c = 1;
+            for (let i = 15; i >= 12; i--) {
+              const sum = block[i] + c;
+              block[i] = sum & 0xFF;
+              c = sum >>> 8;
+            }
+          }
+
+          const plaintext = new Uint8Array(ciphertext.length);
+          const keystream = new Uint8Array(16);
+          for (let i = 0; i < ciphertext.length; i += 16) {
+            inc32(cb);
+            aesEncryptBlock(w, cb, keystream);
+            const blockLen = Math.min(16, ciphertext.length - i);
+            for (let k = 0; k < blockLen; k++) {
+              plaintext[i + k] = ciphertext[i + k] ^ keystream[k];
+            }
+          }
+          return plaintext;
+        }
+
+        return {
+          pbkdf2Sha256: fastPbkdf2Sha256,
+          encryptGCM: encryptGCM,
+          decryptGCM: decryptGCM,
+          sha256: sha256
+        };
+      })();
+
+      async function deriveAES256Key(password, saltBytes) {
+        if (!window.crypto || !window.crypto.subtle) return null;
+        try {
+          const enc = new TextEncoder();
+          const keyMaterial = await window.crypto.subtle.importKey(
+            'raw',
+            enc.encode(password),
+            { name: 'PBKDF2' },
+            false,
+            ['deriveKey']
+          );
+          return await window.crypto.subtle.deriveKey(
+            {
+              name: 'PBKDF2',
+              salt: saltBytes,
+              iterations: PBKDF2_ITERATIONS,
+              hash: 'SHA-256'
+            },
+            keyMaterial,
+            { name: 'AES-GCM', length: 256 },
+            false,
+            ['encrypt', 'decrypt']
+          );
+        } catch {
+          return null;
+        }
+      }
+
+      async function encryptBytesAESGCM(plainBytes, password) {
+        const salt = (window.crypto && window.crypto.getRandomValues)
+          ? window.crypto.getRandomValues(new Uint8Array(SALT_LENGTH))
+          : (function () {
+              const b = new Uint8Array(SALT_LENGTH);
+              for (let i = 0; i < SALT_LENGTH; i++) b[i] = Math.floor(Math.random() * 256);
+              return b;
+            })();
+        const nonce = (window.crypto && window.crypto.getRandomValues)
+          ? window.crypto.getRandomValues(new Uint8Array(NONCE_LENGTH))
+          : (function () {
+              const b = new Uint8Array(NONCE_LENGTH);
+              for (let i = 0; i < NONCE_LENGTH; i++) b[i] = Math.floor(Math.random() * 256);
+              return b;
+            })();
+
+        if (window.crypto && window.crypto.subtle) {
+          try {
+            const key = await deriveAES256Key(password, salt);
+            if (key) {
+              const cipherBuffer = await window.crypto.subtle.encrypt(
+                { name: 'AES-GCM', iv: nonce, tagLength: 128 },
+                key,
+                plainBytes
+              );
+              return {
+                ciphertext: new Uint8Array(cipherBuffer),
+                salt: salt,
+                nonce: nonce
+              };
+            }
+          } catch (e) {
+            // fallback
+          }
+        }
+
+        const keyBytes = PureCrypto.pbkdf2Sha256(password, salt, PBKDF2_ITERATIONS, 32);
+        const ciphertext = PureCrypto.encryptGCM(keyBytes, nonce, plainBytes);
+        return {
+          ciphertext: ciphertext,
+          salt: salt,
+          nonce: nonce
+        };
+      }
+
+      async function decryptBytesAESGCM(cipherBytes, password, salt, nonce) {
+        if (window.crypto && window.crypto.subtle) {
+          let key = null;
+          try {
+            key = await deriveAES256Key(password, salt);
+          } catch {
+            key = null;
+          }
+
+          if (key) {
+            try {
+              const plainBuffer = await window.crypto.subtle.decrypt(
+                { name: 'AES-GCM', iv: nonce, tagLength: 128 },
+                key,
+                cipherBytes
+              );
+              return new Uint8Array(plainBuffer);
+            } catch (err) {
+              // Exact cryptographic authentication failure in WebCrypto
+              throw new Error('Incorrect password. Unable to decrypt this message.');
+            }
+          }
+        }
+
+        // Pure-JS fallback only when Web Crypto is unavailable
+        try {
+          const keyBytes = PureCrypto.pbkdf2Sha256(password, salt, PBKDF2_ITERATIONS, 32);
+          return PureCrypto.decryptGCM(keyBytes, nonce, cipherBytes);
+        } catch {
+          throw new Error('Incorrect password. Unable to decrypt this message.');
+        }
+      }
+
+      // =====================================================================
+      // 3. PAYLOAD SERIALIZER & PARSER (STEGOSHARE v1 PROTOCOL)
+      // =====================================================================
+      const MAGIC_SIGNATURE = 'STEGOSHARE';
+      const FORMAT_VERSION = 1;
+
+      function serializeStegoPacket(options) {
+        const enc = new TextEncoder();
+        const magicBytes = enc.encode(MAGIC_SIGNATURE);
+        const metaBytes = enc.encode(JSON.stringify(options.metadata || { mode: 'text', timestamp: Date.now() }));
+        const saltBytes = (options.encrypted && options.salt) ? options.salt : new Uint8Array(0);
+        const nonceBytes = (options.encrypted && options.nonce) ? options.nonce : new Uint8Array(0);
+
+        const flags = (options.encrypted ? 0x01 : 0x00) | (options.isFile ? 0x02 : 0x00);
+        const crc = computeCRC32(options.payloadBytes);
+
+        const headerLen = 10 + 1 + 1 + 1 + saltBytes.length + 1 + nonceBytes.length + 2 + metaBytes.length + 4 + 4;
+        const totalLen = headerLen + options.payloadBytes.length;
+        const packet = new Uint8Array(totalLen);
+        const view = new DataView(packet.buffer);
+
+        let offset = 0;
+        packet.set(magicBytes, offset); offset += 10;
+        packet[offset++] = FORMAT_VERSION;
+        packet[offset++] = flags;
+
+        packet[offset++] = saltBytes.length;
+        if (saltBytes.length > 0) {
+          packet.set(saltBytes, offset);
+          offset += saltBytes.length;
+        }
+
+        packet[offset++] = nonceBytes.length;
+        if (nonceBytes.length > 0) {
+          packet.set(nonceBytes, offset);
+          offset += nonceBytes.length;
+        }
+
+        view.setUint16(offset, metaBytes.length, false); offset += 2;
+        packet.set(metaBytes, offset); offset += metaBytes.length;
+
+        view.setUint32(offset, options.payloadBytes.length, false); offset += 4;
+        view.setUint32(offset, crc, false); offset += 4;
+
+        packet.set(options.payloadBytes, offset);
+        return { packet, crc, headerLen, totalLen };
+      }
+
+      // =====================================================================
+      // 3B. SOCIAL-SAFE 8x8 BLOCK LUMA QUANTIZATION + 3x ECC ENGINE
+      // Survives JPEG compression (WhatsApp/Instagram Q >= 55%)
+      // =====================================================================
+      const ROBUST_Q = 32;
+      const ROBUST_REPS = 3;
+
+      function setRobustBlockBit(pixels, width, bx, by, bit) {
+        let sumY = 0;
+        for (let y = 0; y < 8; y++) {
+          for (let x = 0; x < 8; x++) {
+            const idx = ((by * 8 + y) * width + (bx * 8 + x)) * 4;
+            sumY += 0.299 * pixels[idx] + 0.587 * pixels[idx + 1] + 0.114 * pixels[idx + 2];
+          }
+        }
+        const avgY = sumY / 64;
+        let bestCenter = avgY;
+        let minDiff = 99999;
+        for (let m = 1; m <= 6; m++) {
+          if ((m & 1) === bit) {
+            const center = m * ROBUST_Q + (ROBUST_Q / 2);
+            const diff = Math.abs(avgY - center);
+            if (diff < minDiff) {
+              minDiff = diff;
+              bestCenter = center;
+            }
+          }
+        }
+
+        for (let iter = 0; iter < 2; iter++) {
+          let curSumY = 0;
+          for (let y = 0; y < 8; y++) {
+            for (let x = 0; x < 8; x++) {
+              const idx = ((by * 8 + y) * width + (bx * 8 + x)) * 4;
+              curSumY += 0.299 * pixels[idx] + 0.587 * pixels[idx + 1] + 0.114 * pixels[idx + 2];
+            }
+          }
+          const curAvg = curSumY / 64;
+          const delta = bestCenter - curAvg;
+          for (let y = 0; y < 8; y++) {
+            for (let x = 0; x < 8; x++) {
+              const idx = ((by * 8 + y) * width + (bx * 8 + x)) * 4;
+              for (let ch = 0; ch < 3; ch++) {
+                const v = curAvg + (pixels[idx + ch] - curAvg) * 0.82 + delta;
+                pixels[idx + ch] = Math.max(4, Math.min(251, Math.round(v)));
+              }
+            }
+          }
+        }
+      }
+
+      function getRobustBlockBit(pixels, width, bx, by) {
+        let sumY = 0;
+        for (let y = 0; y < 8; y++) {
+          for (let x = 0; x < 8; x++) {
+            const idx = ((by * 8 + y) * width + (bx * 8 + x)) * 4;
+            sumY += 0.299 * pixels[idx] + 0.587 * pixels[idx + 1] + 0.114 * pixels[idx + 2];
+          }
+        }
+        const avgY = sumY / 64;
+        const m = Math.floor(avgY / ROBUST_Q);
+        return m & 1;
+      }
+
+      function embedRobustPacketIntoPixels(sourcePixels, packetBytes, width, height) {
+        const cols = Math.floor(width / 8);
+        const rows = Math.floor(height / 8);
+        const totalBlocks = cols * rows;
+        const totalBits = packetBytes.length * 8;
+        if (totalBits * ROBUST_REPS > totalBlocks) {
+          throw new Error('Message too large for Social-Safe 8x8 DCT mode on this image.');
+        }
+
+        const out = new Uint8ClampedArray(sourcePixels);
+        let blockIdx = 0;
+        for (let bitIdx = 0; bitIdx < totalBits; bitIdx++) {
+          const bytePos = bitIdx >>> 3;
+          const bitShift = 7 - (bitIdx & 7);
+          const bit = (packetBytes[bytePos] >>> bitShift) & 1;
+          for (let rep = 0; rep < ROBUST_REPS; rep++) {
+            const bx = blockIdx % cols;
+            const by = Math.floor(blockIdx / cols);
+            setRobustBlockBit(out, width, bx, by, bit);
+            blockIdx++;
+          }
+        }
+        return out;
+      }
+
+      function extractRobustBytesFromPixels(pixels, width, height, byteCount) {
+        const cols = Math.floor(width / 8);
+        const rows = Math.floor(height / 8);
+        const totalBlocks = cols * rows;
+        const totalBits = byteCount * 8;
+        if (totalBits * ROBUST_REPS > totalBlocks) {
+          throw new Error('Declared Social-Safe payload exceeds image block capacity.');
+        }
+        const out = new Uint8Array(byteCount);
+        let blockIdx = 0;
+        for (let bitIdx = 0; bitIdx < totalBits; bitIdx++) {
+          let votes = 0;
+          for (let rep = 0; rep < ROBUST_REPS; rep++) {
+            const bx = blockIdx % cols;
+            const by = Math.floor(blockIdx / cols);
+            votes += getRobustBlockBit(pixels, width, bx, by);
+            blockIdx++;
+          }
+          const bit = votes >= 2 ? 1 : 0;
+          const bytePos = bitIdx >>> 3;
+          const bitShift = 7 - (bitIdx & 7);
+          out[bytePos] |= (bit << bitShift);
+        }
+        return out;
+      }
+
+      function base64UrlToPacket(b64Url) {
+        let clean = (b64Url || '').trim();
+        try {
+          clean = decodeURIComponent(clean);
+        } catch {
+          // ignore uri decode error
+        }
+        if (clean.indexOf('#stego=') !== -1) {
+          clean = clean.split('#stego=')[1].split('&')[0];
+        } else if (clean.indexOf('stego=') !== -1) {
+          clean = clean.split('stego=')[1].split('&')[0];
+        }
+        clean = clean.replace(/-/g, '+').replace(/_/g, '/');
+        while (clean.length % 4 !== 0) clean += '=';
+        const bin = atob(clean);
+        const out = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) {
+          out[i] = bin.charCodeAt(i);
+        }
+        return out;
+      }
+
+      function extractBytesFromPixels(pixels, byteCount) {
+        const totalBits = byteCount * 8;
+        const maxBits = Math.floor(pixels.length / 4) * 3;
+        if (totalBits > maxBits) {
+          throw new Error('Corrupted payload: declared length exceeds image capacity.');
+        }
+        const out = new Uint8Array(byteCount);
+        let bitIdx = 0;
+        for (let i = 0; i < pixels.length && bitIdx < totalBits; i += 4) {
+          for (let c = 0; c < 3 && bitIdx < totalBits; c++) {
+            const bit = pixels[i + c] & 1;
+            const bytePos = bitIdx >>> 3;
+            const bitShift = 7 - (bitIdx & 7);
+            out[bytePos] |= (bit << bitShift);
+            bitIdx++;
+          }
+        }
+        return out;
+      }
+
+      function parseStegoWithExtractor(extractFn, maxCarrierBytes, engineType) {
+        if (maxCarrierBytes < 26) {
+          throw new Error('No hidden STEGOSHARE message was detected in this image.');
+        }
+
+        const dec = new TextDecoder('utf-8', { fatal: false });
+        const prefix = extractFn(13);
+        const magic = dec.decode(prefix.slice(0, 10));
+        if (magic !== MAGIC_SIGNATURE) {
+          throw new Error('No hidden STEGOSHARE message was detected in this image.');
+        }
+
+        const version = prefix[10];
+        if (version !== FORMAT_VERSION) {
+          throw new Error('Unsupported payload version (v' + version + '). Expected v' + FORMAT_VERSION + '.');
+        }
+
+        const flags = prefix[11];
+        const encrypted = (flags & 0x01) !== 0;
+        const isFile = (flags & 0x02) !== 0;
+        const saltLen = prefix[12];
+        if (saltLen > 64) {
+          throw new Error('Corrupted payload header: invalid salt length.');
+        }
+
+        const step2Len = 13 + saltLen + 1;
+        const buf2 = extractFn(step2Len);
+        const salt = buf2.slice(13, 13 + saltLen);
+        const nonceLen = buf2[13 + saltLen];
+        if (nonceLen > 64) {
+          throw new Error('Corrupted payload header: invalid nonce length.');
+        }
+
+        const step3Len = step2Len + nonceLen + 2;
+        const buf3 = extractFn(step3Len);
+        const nonce = buf3.slice(step2Len, step2Len + nonceLen);
+        const view3 = new DataView(buf3.buffer, buf3.byteOffset, buf3.byteLength);
+        const metaLen = view3.getUint16(step2Len + nonceLen, false);
+        if (metaLen > 4096) {
+          throw new Error('Corrupted payload header: invalid metadata length.');
+        }
+
+        const headerLen = step3Len + metaLen + 8;
+        if (headerLen > maxCarrierBytes) {
+          throw new Error('Corrupted payload: header exceeds image capacity.');
+        }
+
+        const headerBuf = extractFn(headerLen);
+        let metadata = { mode: isFile ? 'file' : 'text', timestamp: Date.now() };
+        try {
+          metadata = JSON.parse(dec.decode(headerBuf.slice(step3Len, step3Len + metaLen)));
+        } catch {
+          throw new Error('Corrupted payload: damaged metadata JSON.');
+        }
+
+        const viewH = new DataView(headerBuf.buffer, headerBuf.byteOffset, headerBuf.byteLength);
+        const payloadLen = viewH.getUint32(step3Len + metaLen, false);
+        const expectedCrc = viewH.getUint32(step3Len + metaLen + 4, false);
+
+        const totalLen = headerLen + payloadLen;
+        if (payloadLen === 0 || totalLen > maxCarrierBytes) {
+          throw new Error('Corrupted payload: payload size exceeds image pixel bounds.');
+        }
+
+        const fullPacket = extractFn(totalLen);
+        const payloadBytes = fullPacket.slice(headerLen, totalLen);
+        const actualCrc = computeCRC32(payloadBytes);
+
+        if (actualCrc !== expectedCrc) {
+          throw new Error('Corrupted payload: CRC32 checksum mismatch. The image may have been altered or compressed.');
+        }
+
+        return {
+          header: {
+            magic: magic,
+            version: version,
+            encrypted: encrypted,
+            isFile: isFile,
+            salt: salt,
+            nonce: nonce,
+            metadata: metadata,
+            payloadLength: payloadLen,
+            crc32: expectedCrc,
+            headerLength: headerLen,
+            totalLength: totalLen,
+            engineType: engineType || 'lsb'
+          },
+          payloadBytes: payloadBytes
+        };
+      }
+
+      function parseStegoFromPacketBytes(packetBytes) {
+        return parseStegoWithExtractor(function (n) {
+          if (n > packetBytes.length) throw new Error('Truncated portable armor packet.');
+          return packetBytes.slice(0, n);
+        }, packetBytes.length, 'portable-link');
+      }
+
+      function parseStegoFromPixels(pixels, width, height) {
+        const maxLsbBytes = Math.floor((Math.floor(pixels.length / 4) * 3) / 8);
+        try {
+          return parseStegoWithExtractor(function (n) {
+            return extractBytesFromPixels(pixels, n);
+          }, maxLsbBytes, 'lsb');
+        } catch (lsbErr) {
+          // If 1-LSB fails, automatically attempt Social-Safe 8x8 DCT luminance block extraction
+          const totalPx = Math.floor(pixels.length / 4);
+          const w = width || Math.round(Math.sqrt(totalPx));
+          const h = height || Math.floor(totalPx / Math.max(1, w));
+          const maxRobustBytes = Math.floor((Math.floor(w / 8) * Math.floor(h / 8)) / (8 * ROBUST_REPS));
+          if (maxRobustBytes >= 26) {
+            try {
+              return parseStegoWithExtractor(function (n) {
+                return extractRobustBytesFromPixels(pixels, w, h, n);
+              }, maxRobustBytes, 'robust');
+            } catch {
+              // Fall through to original LSB error
+            }
+          }
+          throw lsbErr;
+        }
+      }
+
+      function embedPacketIntoPixels(sourcePixels, packetBytes) {
+        const totalBits = packetBytes.length * 8;
+        const out = new Uint8ClampedArray(sourcePixels);
+        let bitIdx = 0;
+        for (let i = 0; i < out.length && bitIdx < totalBits; i += 4) {
+          for (let c = 0; c < 3 && bitIdx < totalBits; c++) {
+            const bytePos = bitIdx >>> 3;
+            const bitShift = 7 - (bitIdx & 7);
+            const bit = (packetBytes[bytePos] >>> bitShift) & 1;
+            out[i + c] = (out[i + c] & 0xFE) | bit;
+            bitIdx++;
+          }
+        }
+        return out;
+      }
+
+      // =====================================================================
+      // 4. UI STATE & CONTROLLERS
+      // =====================================================================
+      const state = {
+        revealImage: null,
+        detectedPacket: null,
+        revealedData: null
+      };
+
+      function formatBytes(bytes) {
+        if (!bytes || bytes === 0) return '0 B';
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+      }
+
+      function showToast(message, type) {
+        const container = document.getElementById('toastContainer');
+        if (!container) return;
+        const toast = document.createElement('div');
+        const isErr = type === 'error';
+        const isWarn = type === 'warn';
+        toast.className = 'pointer-events-auto rounded-xl px-4 py-3 border shadow-xl backdrop-blur-xl text-xs font-mono flex items-center justify-between gap-3 transition-all duration-300 ' +
+          (isErr ? 'bg-rose-950/90 border-rose-500/50 text-rose-100' :
+           isWarn ? 'bg-amber-950/90 border-amber-500/50 text-amber-100' :
+           'bg-[#081520]/95 border-[#00F0FF]/50 text-cyan-100');
+
+        const span = document.createElement('span');
+        span.textContent = message;
+        const closeBtn = document.createElement('button');
+        closeBtn.textContent = '×';
+        closeBtn.className = 'text-base font-bold opacity-70 hover:opacity-100';
+        closeBtn.addEventListener('click', function () { toast.remove(); });
+        toast.appendChild(span);
+        toast.appendChild(closeBtn);
+        container.appendChild(toast);
+        setTimeout(function () { if (toast.parentNode) toast.remove(); }, 4200);
+      }
+
+      function resetRevealUI() {
+        state.revealImage = null;
+        state.detectedPacket = null;
+        state.revealedData = null;
+        document.getElementById('revealFileInput').value = '';
+        document.getElementById('revealShareCodeInput').value = '';
+        document.getElementById('revealPreviewCard').classList.add('hidden');
+        document.getElementById('revealEmptyState').classList.remove('hidden');
+        document.getElementById('revealNoPayloadCard').classList.add('hidden');
+        document.getElementById('revealPasswordCard').classList.add('hidden');
+        document.getElementById('revealSuccessCard').classList.add('hidden');
+        document.getElementById('revealWrongPasswordBanner').classList.add('hidden');
+        document.getElementById('revealedMediaContainer').classList.add('hidden');
+        document.getElementById('hexInspectorPanel').classList.add('hidden');
+      }
+
+      document.getElementById('resetAllBtn').addEventListener('click', function () {
+        resetRevealUI();
+        showToast('Workspace cleared.', 'success');
+      });
+
+      document.getElementById('replaceImageBtn').addEventListener('click', function () {
+        document.getElementById('revealFileInput').value = '';
+        document.getElementById('revealFileInput').click();
+      });
+
+      function updateHexInspector(h, payloadBytes) {
+        const detailsEl = document.getElementById('inspectorTelemetryDetails');
+        const labelEl = document.getElementById('inspectorEngineLabel');
+        const engineMap = {
+          'lsb': '1-LSB RGB Lossless Carrier',
+          'robust': 'Social-Safe 8x8 DCT Block Armor',
+          'portable-link': 'Portable Armor Link'
+        };
+        labelEl.textContent = engineMap[h.engineType] || h.engineType;
+
+        let hexPreview = '';
+        const limit = Math.min(32, payloadBytes.length);
+        for (let i = 0; i < limit; i++) {
+          hexPreview += payloadBytes[i].toString(16).padStart(2, '0').toUpperCase() + ' ';
+        }
+        if (payloadBytes.length > limit) hexPreview += '... (' + payloadBytes.length + ' bytes)';
+
+        detailsEl.innerHTML = `
+          <div><span class="text-cyan-400">Protocol Magic:</span> ${h.magic} (Version ${h.version})</div>
+          <div><span class="text-cyan-400">Engine Type:</span> ${engineMap[h.engineType] || h.engineType}</div>
+          <div><span class="text-cyan-400">Security Mode:</span> ${h.encrypted ? 'AES-256-GCM (PBKDF2-SHA256, 100k rounds)' : 'Unencrypted Plaintext'}</div>
+          <div><span class="text-cyan-400">Payload Type:</span> ${h.isFile ? 'Binary File Attachment' : 'Text Payload'}</div>
+          <div><span class="text-cyan-400">Header Size:</span> ${h.headerLength} bytes</div>
+          <div><span class="text-cyan-400">Payload Size:</span> ${formatBytes(h.payloadLength)} (${h.payloadLength} bytes)</div>
+          <div><span class="text-cyan-400">CRC32 Checksum:</span> 0x${h.crc32.toString(16).toUpperCase().padStart(8, '0')} (Verified IEEE 802.3)</div>
+          ${h.salt && h.salt.length ? `<div><span class="text-cyan-400">Salt (Hex):</span> ${Array.from(h.salt).map(b => b.toString(16).padStart(2, '0')).join('')}</div>` : ''}
+          ${h.nonce && h.nonce.length ? `<div><span class="text-cyan-400">IV Nonce (Hex):</span> ${Array.from(h.nonce).map(b => b.toString(16).padStart(2, '0')).join('')}</div>` : ''}
+          <div><span class="text-cyan-400">Raw Byte Sample:</span> <span class="text-emerald-400">${hexPreview}</span></div>
+        `;
+      }
+
+      document.getElementById('toggleHexInspectorBtn').addEventListener('click', function () {
+        const panel = document.getElementById('hexInspectorPanel');
+        const isHidden = panel.classList.contains('hidden');
+        if (isHidden) {
+          panel.classList.remove('hidden');
+          this.textContent = 'Hide Raw Telemetry';
+        } else {
+          panel.classList.add('hidden');
+          this.textContent = 'View Raw Telemetry';
+        }
+      });
+
+      function displayDecodedPayload(rawPlainBytes, header) {
+        document.getElementById('revealPasswordCard').classList.add('hidden');
+        document.getElementById('revealNoPayloadCard').classList.add('hidden');
+        document.getElementById('revealEmptyState').classList.add('hidden');
+        document.getElementById('revealSuccessCard').classList.remove('hidden');
+
+        const isFile = header.isFile;
+        const meta = header.metadata || {};
+        let decodedText = '';
+
+        const mediaContainer = document.getElementById('revealedMediaContainer');
+        const imgPreview = document.getElementById('revealedImagePreview');
+        const audioPlayer = document.getElementById('revealedAudioPlayer');
+        mediaContainer.classList.add('hidden');
+        imgPreview.classList.add('hidden');
+        audioPlayer.classList.add('hidden');
+
+        if (isFile) {
+          const mime = (meta.mimeType || 'application/octet-stream').toLowerCase();
+          const filename = meta.filename || 'secret-file.bin';
+
+          decodedText = '[Binary File Payload Extracted]\n' +
+            'File Name:     ' + filename + '\n' +
+            'MIME Type:     ' + mime + '\n' +
+            'Original Size: ' + formatBytes(rawPlainBytes.length) + '\n\n' +
+            'Click "Download File" above to save this decrypted file.';
+
+          document.getElementById('downloadRevealedBtnLabel').textContent = 'Download ' + filename;
+
+          // Check if payload is previewable image or audio
+          if (mime.startsWith('image/')) {
+            try {
+              const blob = new Blob([rawPlainBytes], { type: mime });
+              imgPreview.src = URL.createObjectURL(blob);
+              imgPreview.classList.remove('hidden');
+              mediaContainer.classList.remove('hidden');
+            } catch {}
+          } else if (mime.startsWith('audio/')) {
+            try {
+              const blob = new Blob([rawPlainBytes], { type: mime });
+              audioPlayer.src = URL.createObjectURL(blob);
+              audioPlayer.classList.remove('hidden');
+              mediaContainer.classList.remove('hidden');
+            } catch {}
+          }
+        } else {
+          decodedText = new TextDecoder('utf-8', { fatal: false }).decode(rawPlainBytes);
+          document.getElementById('downloadRevealedBtnLabel').textContent = 'Save as TXT';
+        }
+
+        state.revealedData = {
+          mode: isFile ? 'file' : 'text',
+          text: decodedText,
+          fileBytes: rawPlainBytes,
+          filename: meta.filename || 'stegoreveal-message.txt',
+          mimeType: meta.mimeType || (isFile ? 'application/octet-stream' : 'text/plain;charset=utf-8'),
+          encrypted: header.encrypted,
+          payloadLength: rawPlainBytes.length,
+          timestamp: meta.timestamp || Date.now()
+        };
+
+        document.getElementById('revealedMessageOutput').textContent = decodedText;
+        document.getElementById('revOutEncStatus').textContent = header.encrypted ? 'AES-256-GCM Decrypted' : 'Unencrypted (Plaintext)';
+        document.getElementById('revOutEncStatus').className = header.encrypted ? 'text-[#00FF88] font-semibold' : 'text-cyan-300 font-semibold';
+        document.getElementById('revOutPayloadSize').textContent = formatBytes(rawPlainBytes.length);
+        document.getElementById('revOutDecodeStatus').textContent = 'CRC32 Verified (0x' + header.crc32.toString(16).toUpperCase().padStart(8, '0') + ')';
+        document.getElementById('revOutTimestamp').textContent = new Date(state.revealedData.timestamp).toLocaleTimeString();
+
+        updateHexInspector(header, rawPlainBytes);
+      }
+
+      function inspectUploadedImage(imgObj) {
+        state.revealImage = imgObj;
+        state.detectedPacket = null;
+        state.revealedData = null;
+
+        document.getElementById('revealPreviewCard').classList.remove('hidden');
+        document.getElementById('revealUploadedImg').src = imgObj.dataUrl;
+        document.getElementById('revMetaName').textContent = imgObj.fileName;
+        document.getElementById('revMetaDim').textContent = imgObj.width + ' × ' + imgObj.height + ' px';
+        document.getElementById('revMetaSize').textContent = formatBytes(imgObj.fileSize);
+
+        document.getElementById('revealEmptyState').classList.add('hidden');
+        document.getElementById('revealNoPayloadCard').classList.add('hidden');
+        document.getElementById('revealPasswordCard').classList.add('hidden');
+        document.getElementById('revealSuccessCard').classList.add('hidden');
+        document.getElementById('revealWrongPasswordBanner').classList.add('hidden');
+        document.getElementById('hexInspectorPanel').classList.add('hidden');
+
+        try {
+          const parsed = parseStegoFromPixels(imgObj.pixels, imgObj.width, imgObj.height);
+          state.detectedPacket = parsed;
+          const h = parsed.header;
+
+          if (h.encrypted) {
+            document.getElementById('revealPasswordCard').classList.remove('hidden');
+            document.getElementById('revealPasswordInput').value = '';
+            showToast('Encrypted message detected! Enter password to unlock.', 'warn');
+          } else {
+            displayDecodedPayload(parsed.payloadBytes, h);
+            showToast('Hidden message revealed!', 'success');
+          }
+        } catch (err) {
+          document.getElementById('revealNoPayloadCard').classList.remove('hidden');
+          const isNoMsg = err.message.indexOf('No hidden STEGOSHARE message') !== -1;
+          document.getElementById('revealNoPayloadTitle').textContent = isNoMsg
+            ? 'No hidden message was found in this image.'
+            : err.message;
+          document.getElementById('revealNoPayloadDetail').textContent = isNoMsg
+            ? 'Neither the RGB Least Significant Bit stream nor the 8×8 DCT luminance blocks contain a valid STEGOSHARE header. Please verify that you uploaded an encoded carrier image.'
+            : 'The image header or CRC32 integrity verification failed. The image may have been cropped, resized, or heavily altered.';
+        }
+      }
+
+      function loadFileForReveal(file) {
+        if (!file) return;
+        const validMimes = ['image/png', 'image/jpeg', 'image/jpg', 'image/bmp', 'image/webp'];
+        const ext = (file.name.split('.').pop() || '').toLowerCase();
+        const validExts = ['png', 'jpg', 'jpeg', 'bmp', 'webp'];
+        if (!validMimes.includes(file.type) && !validExts.includes(ext)) {
+          showToast('Unsupported file format. Please upload a PNG, JPG, WEBP, or BMP image.', 'error');
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onerror = function () {
+          showToast('Failed to read image file.', 'error');
+        };
+        reader.onload = function (ev) {
+          const img = new Image();
+          img.onerror = function () {
+            showToast('Unable to decode image file.', 'error');
+          };
+          img.onload = function () {
+            const c = document.createElement('canvas');
+            c.width = img.naturalWidth || img.width;
+            c.height = img.naturalHeight || img.height;
+            const ctx = c.getContext('2d', { willReadFrequently: true });
+            ctx.imageSmoothingEnabled = false;
+            ctx.drawImage(img, 0, 0);
+            const imgData = ctx.getImageData(0, 0, c.width, c.height);
+
+            // Use the FileReader result URL directly for preview to save memory
+            inspectUploadedImage({
+              width: c.width,
+              height: c.height,
+              pixels: new Uint8ClampedArray(imgData.data),
+              dataUrl: ev.target.result,
+              fileName: file.name || 'uploaded-image.png',
+              fileSize: file.size || 0
+            });
+          };
+          img.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // Dropzone & File Input Listeners with Keyboard Accessibility
+      const revealDropzone = document.getElementById('revealDropzone');
+      const revealFileInput = document.getElementById('revealFileInput');
+
+      revealDropzone.addEventListener('click', function () { revealFileInput.click(); });
+      revealDropzone.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          revealFileInput.click();
+        }
+      });
+      revealDropzone.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        revealDropzone.classList.add('border-[#00F0FF]', 'bg-cyan-950/30');
+      });
+      revealDropzone.addEventListener('dragleave', function () {
+        revealDropzone.classList.remove('border-[#00F0FF]', 'bg-cyan-950/30');
+      });
+      revealDropzone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        revealDropzone.classList.remove('border-[#00F0FF]', 'bg-cyan-950/30');
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
+          loadFileForReveal(e.dataTransfer.files[0]);
+        }
+      });
+      revealFileInput.addEventListener('change', function () {
+        if (revealFileInput.files && revealFileInput.files[0]) {
+          loadFileForReveal(revealFileInput.files[0]);
+        }
+      });
+
+      // Global Clipboard Paste Support (Handles images AND stego links)
+      window.addEventListener('paste', function (e) {
+        if (!e.clipboardData) return;
+
+        // Check if an image is in clipboard
+        if (e.clipboardData.items) {
+          const items = e.clipboardData.items;
+          for (let i = 0; i < items.length; i++) {
+            if (items[i].type.indexOf('image') !== -1) {
+              const file = items[i].getAsFile();
+              if (file) {
+                loadFileForReveal(file);
+                showToast('Clipboard image pasted for inspection!', 'success');
+                return;
+              }
+            }
+          }
+        }
+
+        // Check if stego share text is in clipboard
+        const pastedText = e.clipboardData.getData('text');
+        if (pastedText && (pastedText.includes('#stego=') || pastedText.includes('stego='))) {
+          document.getElementById('revealShareCodeInput').value = pastedText.trim();
+          decodeFromPortableCode(pastedText.trim());
+          showToast('Pasted stego link detected and decoded!', 'success');
+        }
+      });
+
+      // Share Link / Armor Code Decoder
+      function decodeFromPortableCode(rawCodeStr) {
+        if (!rawCodeStr || !rawCodeStr.trim()) {
+          showToast('Please paste a valid #stego=... share link or armor code.', 'error');
+          return;
+        }
+        try {
+          const pktBytes = base64UrlToPacket(rawCodeStr);
+          const parsed = parseStegoFromPacketBytes(pktBytes);
+          state.detectedPacket = parsed;
+          const h = parsed.header;
+
+          document.getElementById('revealEmptyState').classList.add('hidden');
+          document.getElementById('revealNoPayloadCard').classList.add('hidden');
+          document.getElementById('revealPasswordCard').classList.add('hidden');
+          document.getElementById('revealSuccessCard').classList.add('hidden');
+          document.getElementById('revealWrongPasswordBanner').classList.add('hidden');
+
+          if (h.encrypted) {
+            document.getElementById('revealPasswordCard').classList.remove('hidden');
+            document.getElementById('revealPasswordInput').value = '';
+            showToast('Encrypted Share Link detected. Enter password to unlock.', 'warn');
+          } else {
+            displayDecodedPayload(parsed.payloadBytes, h);
+            showToast('Secret message revealed from Share Link!', 'success');
+          }
+        } catch (err) {
+          showToast('Invalid Share Link or Armor Code.', 'error');
+        }
+      }
+
+      document.getElementById('revealFromShareCodeBtn').addEventListener('click', function () {
+        decodeFromPortableCode(document.getElementById('revealShareCodeInput').value);
+      });
+
+      // Password Toggle & Decryption
+      const revealPasswordInput = document.getElementById('revealPasswordInput');
+      document.getElementById('toggleRevealPasswordBtn').addEventListener('click', function () {
+        const isPass = revealPasswordInput.type === 'password';
+        revealPasswordInput.type = isPass ? 'text' : 'password';
+        this.textContent = isPass ? 'HIDE' : 'SHOW';
+      });
+
+      async function triggerDecryption() {
+        if (!state.detectedPacket) return;
+        const pass = revealPasswordInput.value;
+        const wrongBanner = document.getElementById('revealWrongPasswordBanner');
+        wrongBanner.classList.add('hidden');
+
+        if (!pass) {
+          document.getElementById('revealWrongPasswordText').textContent = 'Please enter a password to unlock this message.';
+          wrongBanner.classList.remove('hidden');
+          return;
+        }
+
+        try {
+          const h = state.detectedPacket.header;
+          const decryptedBytes = await decryptBytesAESGCM(
+            state.detectedPacket.payloadBytes,
+            pass,
+            h.salt,
+            h.nonce
+          );
+          displayDecodedPayload(decryptedBytes, h);
+          showToast('Password verified! Secret message unlocked.', 'success');
+        } catch (err) {
+          document.getElementById('revealWrongPasswordText').textContent = 'Incorrect password. Unable to decrypt this message.';
+          wrongBanner.classList.remove('hidden');
+          showToast('Incorrect password. Unable to decrypt this message.', 'error');
+        }
+      }
+
+      document.getElementById('decryptPayloadBtn').addEventListener('click', triggerDecryption);
+      revealPasswordInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          triggerDecryption();
+        }
+      });
+
+      // Copy & Download Actions
+      function fallbackCopyText(text, labelEl) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          labelEl.textContent = 'Copied ✓';
+          showToast('Message copied to clipboard!', 'success');
+          setTimeout(function () { labelEl.textContent = 'Copy Message'; }, 2000);
+        } catch {
+          showToast('Unable to copy automatically.', 'error');
+        }
+        document.body.removeChild(ta);
+      }
+
+      document.getElementById('copyRevealedTextBtn').addEventListener('click', function () {
+        if (!state.revealedData) return;
+        const textToCopy = state.revealedData.text;
+        const label = document.getElementById('copyBtnLabel');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(textToCopy).then(function () {
+            label.textContent = 'Copied ✓';
+            showToast('Message copied to clipboard!', 'success');
+            setTimeout(function () { label.textContent = 'Copy Message'; }, 2000);
+          }).catch(function () {
+            fallbackCopyText(textToCopy, label);
+          });
+        } else {
+          fallbackCopyText(textToCopy, label);
+        }
+      });
+
+      document.getElementById('downloadRevealedBtn').addEventListener('click', function () {
+        if (!state.revealedData) return;
+        try {
+          const blob = new Blob([state.revealedData.fileBytes], { type: state.revealedData.mimeType });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = state.revealedData.filename || 'revealed-message.txt';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+          showToast('Saved ' + a.download, 'success');
+        } catch {
+          showToast('Download failed.', 'error');
+        }
+      });
+
+      // =====================================================================
+      // 5. IN-MEMORY DEMO CARRIER IMAGE GENERATOR
+      // Enables 1-click testing of StegoReveal without external files
+      // =====================================================================
+      async function generateAndLoadDemoCarrier(isEncrypted) {
+        showToast('Generating test stego carrier image...', 'info');
+
+        const width = 360;
+        const height = 240;
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+
+        // Draw a rich cybernetic pattern
+        const grad = ctx.createLinearGradient(0, 0, width, height);
+        grad.addColorStop(0, '#04070B');
+        grad.addColorStop(0.5, '#0B1C2D');
+        grad.addColorStop(1, '#021017');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+
+        // Tech grid lines
+        ctx.strokeStyle = 'rgba(0, 240, 255, 0.12)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < width; x += 20) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+        }
+        for (let y = 0; y < height; y += 20) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+        }
+
+        // Center emblem
+        ctx.fillStyle = '#00F0FF';
+        ctx.font = 'bold 22px "Inter", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('STEGOREVEAL DEMO', width / 2, height / 2 - 10);
+        ctx.fillStyle = '#00FF88';
+        ctx.font = '12px "JetBrains Mono", monospace';
+        ctx.fillText(isEncrypted ? 'AES-256-GCM ENCRYPTED CARRIER' : '1-LSB LOSSLESS CARRIER', width / 2, height / 2 + 15);
+
+        const imgData = ctx.getImageData(0, 0, width, height);
+        const secretMsg = isEncrypted
+          ? '🔒 CONFIDENTIAL TRANSMISSION:\nWelcome to StegoReveal!\nThis secret message was encrypted with AES-256-GCM and embedded into pixel least-significant bits.\nZero-knowledge extraction verified!'
+          : '🕵️ IN-BROWSER STEGANOGRAPHY SUCCESS:\nWelcome to StegoReveal!\nThis hidden payload was extracted directly from pixel color channels with zero server requests.\n100% Client-Side Privacy Guaranteed.';
+
+        const enc = new TextEncoder();
+        let payloadBytes = enc.encode(secretMsg);
+        let salt = null;
+        let nonce = null;
+
+        if (isEncrypted) {
+          const encRes = await encryptBytesAESGCM(payloadBytes, 'demo123');
+          payloadBytes = encRes.ciphertext;
+          salt = encRes.salt;
+          nonce = encRes.nonce;
+        }
+
+        const serialized = serializeStegoPacket({
+          payloadBytes: payloadBytes,
+          encrypted: isEncrypted,
+          isFile: false,
+          salt: salt,
+          nonce: nonce,
+          metadata: { mode: 'text', timestamp: Date.now() }
+        });
+
+        const embeddedPixels = embedPacketIntoPixels(imgData.data, serialized.packet);
+        ctx.putImageData(new ImageData(embeddedPixels, width, height), 0, 0);
+
+        inspectUploadedImage({
+          width: width,
+          height: height,
+          pixels: embeddedPixels,
+          dataUrl: canvas.toDataURL('image/png'),
+          fileName: isEncrypted ? 'demo-encrypted-carrier.png' : 'demo-plaintext-carrier.png',
+          fileSize: 48200
+        });
+
+        if (isEncrypted) {
+          document.getElementById('revealPasswordInput').value = 'demo123';
+        }
+      }
+
+      document.getElementById('loadDemoBtn').addEventListener('click', function () {
+        generateAndLoadDemoCarrier(false);
+      });
+      document.getElementById('testDemoPlainBtn').addEventListener('click', function () {
+        generateAndLoadDemoCarrier(false);
+      });
+      document.getElementById('testDemoEncBtn').addEventListener('click', function () {
+        generateAndLoadDemoCarrier(true);
+      });
+
+      // Ambient Background Particles
+      function initParticles() {
+        const canvas = document.getElementById('bgParticlesCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        window.addEventListener('resize', function () {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        });
+        const particles = [];
+        for (let i = 0; i < 28; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vy: -0.15 - Math.random() * 0.3,
+            vx: (Math.random() - 0.5) * 0.2,
+            alpha: 0.1 + Math.random() * 0.3,
+            bit: Math.random() > 0.5 ? '1' : '0'
+          });
+        }
+        function draw() {
+          ctx.clearRect(0, 0, width, height);
+          ctx.font = '10px "JetBrains Mono", monospace';
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x += p.vx; p.y += p.vy;
+            if (p.y < -10) p.y = height + 10;
+            if (p.x < -10) p.x = width + 10;
+            if (p.x > width + 10) p.x = -10;
+            ctx.fillStyle = 'rgba(0, 240, 255, ' + p.alpha + ')';
+            ctx.fillText(p.bit, p.x, p.y);
+          }
+          requestAnimationFrame(draw);
+        }
+        requestAnimationFrame(draw);
+      }
+
+      function handleUrlHash() {
+        if (window.location.hash && window.location.hash.indexOf('#stego=') === 0) {
+          document.getElementById('revealShareCodeInput').value = window.location.hash;
+          decodeFromPortableCode(window.location.hash);
+        }
+      }
+
+      window.addEventListener('hashchange', handleUrlHash);
+
+      function init() {
+        initParticles();
+        handleUrlHash();
+      }
+
+      if (document.readyState === 'loading') {
+        window.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

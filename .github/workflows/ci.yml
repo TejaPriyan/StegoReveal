@@ -1,0 +1,28 @@
+name: CI Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate HTML and Assets
+        run: |
+          test -f index.html
+          test -f site.webmanifest
+          test -f robots.txt
+          test -f sitemap.xml
+          test -f favicon.svg
+          echo "All critical static files present."

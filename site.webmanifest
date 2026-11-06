@@ -1,0 +1,33 @@
+{
+  "name": "StegoReveal — Steganography Message Extractor & Decryptor",
+  "short_name": "StegoReveal",
+  "description": "Zero-knowledge browser-based steganography extraction terminal. Extract hidden text and binary files from images with AES-256-GCM and CRC32 verification.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#04070B",
+  "background_color": "#04070B",
+  "lang": "en-US",
+  "categories": ["security", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

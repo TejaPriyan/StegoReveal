@@ -1,0 +1,39 @@
+{
+  "name": "stegoreveal",
+  "version": "1.0.0",
+  "description": "STEGOREVEAL — Dedicated Zero-Knowledge Steganography Message Extractor & AES-256-GCM Decryptor",
+  "type": "module",
+  "homepage": "https://tejapriyan.github.io/StegoReveal/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TejaPriyan/StegoReveal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TejaPriyan/StegoReveal/issues"
+  },
+  "author": "Teja Priyan <teja1616150@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "steganography",
+    "stego-decoder",
+    "steganography-extractor",
+    "aes-256-gcm",
+    "pbkdf2",
+    "zero-knowledge",
+    "image-steganography",
+    "security",
+    "privacy",
+    "client-side",
+    "crc32",
+    "dct-armor"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17",
+    "vite": "^5.4.14"
+  }
+}
