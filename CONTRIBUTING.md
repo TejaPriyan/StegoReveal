@@ -40,3 +40,4 @@ Because StegoReveal implements cryptographic operations (PBKDF2-HMAC-SHA256, AES
 - Adhere to NIST SP 800-38D and RFC 8018 standards.
 - Maintain zero-server data leak guarantees (100% in-browser processing).
 - Never send carrier pixels or decrypted plaintext over any network channel.
+

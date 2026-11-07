@@ -26,3 +26,4 @@ If you discover a security vulnerability in StegoReveal:
    - Potential impact analysis.
 
 We strive to respond within 48 hours and release patches promptly.
+

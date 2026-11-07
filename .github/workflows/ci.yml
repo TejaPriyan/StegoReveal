@@ -26,3 +26,4 @@ jobs:
           test -f sitemap.xml
           test -f favicon.svg
           echo "All critical static files present."
+
